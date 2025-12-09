@@ -7,30 +7,27 @@ const initialBooks = [
     title: "Lorem ipsum dolor",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    imageUrl:
-      "https://static.vecteezy.com/system/resources/thumbnails/057/068/323/small/single-fresh-red-strawberry-on-table-green-background-food-fruit-sweet-macro-juicy-plant-image-photo.jpg"
+    imageUrl: "/images/book1.webp"
   },
   {
     id: 2,
     title: "Lorem ipsum dolor",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    imageUrl:
-      "https://static.vecteezy.com/system/resources/thumbnails/057/068/323/small/single-fresh-red-strawberry-on-table-green-background-food-fruit-sweet-macro-juicy-plant-image-photo.jpg"
+    imageUrl: "/images/book2.webp"
   },
   {
     id: 3,
     title: "Lorem ipsum dolor",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    imageUrl: "https://static.vecteezy.com/system/resources/thumbnails/"
+    imageUrl: "/images/book3.webp"
   },
   {
     id: 4,
     title: "Lorem ipsum dolor",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    imageUrl:
-      "https://static.vecteezy.com/system/resources/thumbnails/"
+    imageUrl: "/images/book4.webp"
   }
 ];
 

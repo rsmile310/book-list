@@ -1,7 +1,7 @@
 import React from "react";
 import BookList from "./components/BookList";
 
-function App() {
+function App(): JSX.Element {
   return (
     <main className="app">
       <BookList />

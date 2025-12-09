@@ -128,9 +128,48 @@ body {
   gap: 0.35rem;
 }
 
+.book-item__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .book-item__title {
   margin: 0;
   font-size: 1.15rem;
+}
+
+.book-item__meta {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.book-item__year,
+.book-item__pages {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: rgba(59, 130, 246, 0.15);
+  color: #93c5fd;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  transition: all 0.2s ease-out;
+}
+
+.book-item__pages {
+  background-color: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+  border-color: rgba(168, 85, 247, 0.3);
+}
+
+.book-item__year:hover,
+.book-item__pages:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
 }
 
 .book-item__toggle {

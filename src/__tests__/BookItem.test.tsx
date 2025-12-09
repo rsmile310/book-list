@@ -1,4 +1,3 @@
-import React from "react";
 import { describe, it, expect } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import BookItem from "../components/BookItem";
@@ -11,6 +10,8 @@ describe("BookItem", () => {
         title="Test Book"
         description={descriptionText}
         imageUrl=""
+        year={2020}
+        pages={250}
       />
     );
 

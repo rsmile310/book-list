@@ -1,16 +1,24 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-function BookItem({ title, description, imageUrl }) {
-  const [showDescription, setShowDescription] = useState(false);
-  const [imageError, setImageError] = useState(false);
+interface BookItemProps {
+  title: string;
+  description: string;
+  imageUrl: string;
+  year: number;
+  pages: number;
+}
+
+function BookItem({ title, description, imageUrl, year, pages }: BookItemProps): JSX.Element {
+  const [showDescription, setShowDescription] = useState<boolean>(false);
+  const [imageError, setImageError] = useState<boolean>(false);
 
   const hasDescription = Boolean(description && description.trim());
-  const handleToggle = () => {
+  const handleToggle = (): void => {
     if (!hasDescription) return;
     setShowDescription((prev) => !prev);
   };
 
-  const handleImageError = () => {
+  const handleImageError = (): void => {
     setImageError(true);
   };
 
@@ -38,9 +46,19 @@ function BookItem({ title, description, imageUrl }) {
       )}
 
       <div className="book-item__content">
-        <h2 className="book-item__title">
-          {title && title.trim().length > 0 ? title : "Untitled book"}
-        </h2>
+        <div className="book-item__header">
+          <h2 className="book-item__title">
+            {title && title.trim().length > 0 ? title : "Untitled book"}
+          </h2>
+          <div className="book-item__meta">
+            <span className="book-item__year" title={`Published in ${year}`}>
+              📅 {year}
+            </span>
+            <span className="book-item__pages" title={`${pages} pages`}>
+              📖 {pages}
+            </span>
+          </div>
+        </div>
 
         <button
           type="button"

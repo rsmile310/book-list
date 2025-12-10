@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Icon } from "@iconify/react";
 import BookItem from "./BookItem";
 
 interface Book {
@@ -59,6 +60,20 @@ function BookList(): JSX.Element {
     setBooks((prev) => [...prev, createNewBook()]);
   };
 
+  const handleUpdateBook = (id: number, updatedTitle: string, updatedDescription: string, updatedImageUrl: string): void => {
+    setBooks((prev) =>
+      prev.map((book) =>
+        book.id === id
+          ? { ...book, title: updatedTitle, description: updatedDescription, imageUrl: updatedImageUrl }
+          : book
+      )
+    );
+  };
+
+  const handleDeleteBook = (id: number): void => {
+    setBooks((prev) => prev.filter((book) => book.id !== id));
+  };
+
   return (
     <section className="book-list" aria-label="Book list">
       <header className="book-list__header">
@@ -73,7 +88,8 @@ function BookList(): JSX.Element {
           onClick={handleAddBook}
           className="book-list__add-button"
         >
-          + Add book
+          <Icon icon="mdi:plus" className="book-list__add-button-icon" />
+          <span>Add book</span>
         </button>
       </header>
 
@@ -81,9 +97,12 @@ function BookList(): JSX.Element {
         {books.map((book) => (
           <li key={book.id} className="book-list__item">
             <BookItem
+              id={book.id}
               title={book.title}
               description={book.description}
               imageUrl={book.imageUrl}
+              onUpdate={handleUpdateBook}
+              onDelete={handleDeleteBook}
             />
           </li>
         ))}

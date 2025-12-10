@@ -1,15 +1,20 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import BookItem from "../components/BookItem";
 
 describe("BookItem", () => {
   it("toggles description visibility when clicking the button", () => {
     const descriptionText = "A simple test description for this book.";
+    const mockOnUpdate = vi.fn();
+    const mockOnDelete = vi.fn();
     render(
       <BookItem
+        id={1}
         title="Test Book"
         description={descriptionText}
         imageUrl=""
+        onUpdate={mockOnUpdate}
+        onDelete={mockOnDelete}
       />
     );
 

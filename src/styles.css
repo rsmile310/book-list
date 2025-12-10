@@ -53,28 +53,40 @@ body {
 }
 
 .book-list__add-button {
-  border: 1px solid rgba(148, 163, 184, 0.3);
+  border: 1.5px solid rgba(59, 130, 246, 0.4);
   border-radius: 8px;
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1.25rem;
   font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: 0.01em;
   cursor: pointer;
-  background-color: rgba(59, 130, 246, 0.1);
+  background: rgba(59, 130, 246, 0.15);
   color: #60a5fa;
   transition: all 0.2s ease-out;
   white-space: nowrap;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.book-list__add-button-icon {
+  font-size: 1.2rem;
 }
 
 .book-list__add-button:hover {
-  background-color: rgba(59, 130, 246, 0.2);
-  border-color: rgba(96, 165, 250, 0.5);
+  background: rgba(59, 130, 246, 0.25);
+  border-color: rgba(96, 165, 250, 0.7);
   color: #93c5fd;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 .book-list__add-button:active {
-  background-color: rgba(59, 130, 246, 0.15);
-  transform: scale(0.98);
+  background: rgba(59, 130, 246, 0.2);
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.25);
 }
 
 .book-list__items {
@@ -91,35 +103,65 @@ body {
 
 .book-item {
   display: grid;
-  grid-template-columns: 96px 1fr;
+  grid-template-columns: 200px 1fr;
   gap: 1rem;
   padding: 0.9rem;
   border-radius: 10px;
   background-color: rgba(15, 23, 42, 0.9);
   border: 1px solid rgba(148, 163, 184, 0.25);
+  align-items: start;
+}
+
+.book-item--editing {
+  grid-template-columns: 1fr;
 }
 
 @media (max-width: 640px) {
   .book-item {
-    grid-template-columns: 72px 1fr;
+    grid-template-columns: 120px 1fr;
   }
 }
 
 .book-item__image {
   width: 100%;
-  height: 128px;
+  height: 100%;
   border-radius: 8px;
   object-fit: cover;
   background-color: #020617;
+  border: 2px solid rgba(148, 163, 184, 0.2);
+  transition: all 0.3s ease-out;
+}
+
+.book-item__image:hover {
+  border-color: rgba(148, 163, 184, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .book-item__image--placeholder {
+  width: 100%;
+  height: 128px;
+  border-radius: 8px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
-  color: #b3b9c1;
-  border: 1px dashed #334155;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #9ca3af;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.6) 100%);
+  border: 2px dashed rgba(148, 163, 184, 0.4);
+  transition: all 0.3s ease-out;
+}
+
+.book-item__image--placeholder:hover {
+  border-color: rgba(96, 165, 250, 0.6);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(30, 41, 59, 0.7) 100%);
+}
+
+.book-item__image-placeholder-icon {
+  font-size: 2rem;
+  color: #6b7280;
+  opacity: 0.6;
 }
 
 .book-item__content {
@@ -130,7 +172,9 @@ body {
 
 .book-item__header {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
   gap: 0.5rem;
 }
 
@@ -174,26 +218,35 @@ body {
 
 .book-item__toggle {
   align-self: flex-start;
-  padding: 0.3rem 0.8rem;
-  border-radius: 999px;
-  border: 1px solid #4b5563;
-  background-color: transparent;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  border: 1.5px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.95);
   color: #e5e7eb;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.08s ease-out, color 0.08s ease-out,
-    border-color 0.08s ease-out;
+  transition: all 0.2s ease-out;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .book-item__toggle:hover:not(:disabled) {
-  background-color: #e5e7eb;
-  color: #020617;
-  border-color: #e5e7eb;
+  background: rgba(148, 163, 184, 0.2);
+  border-color: rgba(148, 163, 184, 0.7);
+  color: #f3f4f6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(148, 163, 184, 0.3);
+}
+
+.book-item__toggle:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
 }
 
 .book-item__toggle:disabled {
   cursor: not-allowed;
-  opacity: 0.6;
+  opacity: 0.5;
+  background: rgba(15, 23, 42, 0.5);
 }
 
 .book-item__description {
@@ -201,4 +254,277 @@ body {
   font-size: 0.9rem;
   line-height: 1.4;
   color: #cbd5f5;
+}
+
+.book-item__header-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.book-item__edit-button,
+.book-item__delete-button {
+  padding: 0.4rem;
+  border-radius: 8px;
+  border: 1.5px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.95);
+  color: #e5e7eb;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.book-item__edit-button:hover {
+  background: rgba(59, 130, 246, 0.25);
+  border-color: rgba(96, 165, 250, 0.7);
+  color: #93c5fd;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.book-item__edit-button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.book-item__edit-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.book-item__delete-button {
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #f87171;
+  background: rgba(15, 23, 42, 0.95);
+}
+
+.book-item__delete-button:hover {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: rgba(239, 68, 68, 0.7);
+  color: #fca5a5;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.book-item__delete-button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.book-item__delete-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.book-item__edit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.book-item__edit-image-preview {
+  width: 100%;
+  max-width: 200px;
+  height: 150px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.6) 100%);
+  border: 2px dashed rgba(148, 163, 184, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s ease-out;
+}
+
+.book-item__edit-image-preview:hover {
+  border-color: rgba(96, 165, 250, 0.6);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(30, 41, 59, 0.7) 100%);
+}
+
+.book-item__edit-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.book-item__edit-image-placeholder {
+  color: #9ca3af;
+  font-size: 0.9rem;
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.book-item__edit-image-placeholder-icon {
+  font-size: 2rem;
+  color: #6b7280;
+  opacity: 0.6;
+}
+
+.book-item__edit-image-actions {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0.85;
+  transition: opacity 0.2s ease-out;
+  z-index: 10;
+}
+
+.book-item__edit-image-preview:hover .book-item__edit-image-actions {
+  opacity: 1;
+}
+
+.book-item__file-input {
+  display: none;
+}
+
+.book-item__edit-image-button {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 8px;
+  border: 1.5px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.95);
+  color: #e5e7eb;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-out;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.book-item__edit-image-button:hover {
+  background: rgba(59, 130, 246, 0.25);
+  border-color: rgba(96, 165, 250, 0.7);
+  color: #93c5fd;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.book-item__edit-image-button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.book-item__edit-image-button--remove {
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #f87171;
+  background: rgba(15, 23, 42, 0.95);
+}
+
+.book-item__edit-image-button--remove:hover {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: rgba(239, 68, 68, 0.7);
+  color: #fca5a5;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.book-item__edit-image-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.book-item__edit-title {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background-color: rgba(15, 23, 42, 0.5);
+  color: #e5e7eb;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+}
+
+.book-item__edit-title:focus {
+  outline: none;
+  border-color: rgba(96, 165, 250, 0.5);
+  background-color: rgba(15, 23, 42, 0.7);
+}
+
+.book-item__edit-description {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background-color: rgba(15, 23, 42, 0.5);
+  color: #e5e7eb;
+  font-size: 0.9rem;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.book-item__edit-description:focus {
+  outline: none;
+  border-color: rgba(96, 165, 250, 0.5);
+  background-color: rgba(15, 23, 42, 0.7);
+}
+
+.book-item__edit-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.book-item__save-button,
+.book-item__cancel-button {
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  border: 1.5px solid;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  font-family: inherit;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.book-item__save-button {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.5);
+  color: #60a5fa;
+}
+
+.book-item__save-button:hover {
+  background: rgba(59, 130, 246, 0.25);
+  border-color: rgba(96, 165, 250, 0.7);
+  color: #93c5fd;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.book-item__save-button:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.25);
+}
+
+.book-item__cancel-button {
+  background: rgba(15, 23, 42, 0.95);
+  border-color: rgba(148, 163, 184, 0.4);
+  color: #e5e7eb;
+}
+
+.book-item__cancel-button:hover {
+  background: rgba(148, 163, 184, 0.2);
+  border-color: rgba(148, 163, 184, 0.7);
+  color: #f3f4f6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(148, 163, 184, 0.3);
+}
+
+.book-item__cancel-button:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 6px rgba(148, 163, 184, 0.25);
 }

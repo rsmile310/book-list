@@ -91,8 +91,8 @@ function BookItem({ id, title, description, imageUrl, onUpdate, onDelete }: Book
   };
 
   const shouldShowImage = Boolean(imageUrl && !imageError);
-  const placeholderMessage = imageError 
-    ? "Image unavailable" 
+  const placeholderMessage = imageError
+    ? "Image unavailable"
     : "No image";
 
   return (
@@ -100,12 +100,14 @@ function BookItem({ id, title, description, imageUrl, onUpdate, onDelete }: Book
       {!isEditing && (
         <>
           {shouldShowImage ? (
-            <img
-              src={imageUrl}
-              alt={title ? `Cover of ${title}` : "Book cover"}
-              className="book-item__image"
-              onError={handleImageError}
-            />
+            <div className="book-item__image--box">
+              <img
+                src={imageUrl}
+                alt={title ? `Cover of ${title}` : "Book cover"}
+                className="book-item__image"
+                onError={handleImageError}
+              />
+            </div>
           ) : (
             <div
               className="book-item__image book-item__image--placeholder"

@@ -10,23 +10,21 @@ describe("BookItem", () => {
         title="Test Book"
         description={descriptionText}
         imageUrl=""
-        year={2020}
-        pages={250}
       />
     );
 
-    expect(screen.queryByText(descriptionText)).toBeNull();
+    expect(screen.getByText(descriptionText)).toBeInTheDocument();
 
     const toggleButton = screen.getByRole("button", {
-      name: /show description/i
+      name: /hide description/i
     });
 
     fireEvent.click(toggleButton);
 
-    expect(screen.getByText(descriptionText)).toBeInTheDocument();
+    expect(screen.queryByText(descriptionText)).toBeNull();
 
     fireEvent.click(toggleButton);
 
-    expect(screen.queryByText(descriptionText)).toBeNull();
+    expect(screen.getByText(descriptionText)).toBeInTheDocument();
   });
 });
